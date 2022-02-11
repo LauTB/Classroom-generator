@@ -41,9 +41,6 @@ class Student:
     edad:str
 
 
-
-
-
 def get_sheet(path):
     workbook = load_workbook(filename=path)
     # 36 columns in total

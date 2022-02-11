@@ -1,3 +1,8 @@
 # Proyecto de Modelos de Optimización
 
-#### join ycimadevila
+## Integrantes
+
+### Laura Tamayo Blanco
+### Yasmin Cisneros Cimadevila
+### Jessy Gigato Izquirdo
+### Nelson
