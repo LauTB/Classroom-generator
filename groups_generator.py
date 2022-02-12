@@ -63,10 +63,8 @@ def receive_data(data, categories):
         dic[i] = item
     
     id_list = [i for i in range(len(dic))]
-    print(id_list)
 
     result = order_by_cat(dic, id_list, categories)
-    print(result)
 
     return [dic[item] for item in result]
 

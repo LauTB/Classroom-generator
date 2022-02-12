@@ -4,7 +4,7 @@ from data_selector import *
 
 import sys
 from visual.win import *
-from PyQt5.QtWidgets import QTableWidgetItem, QFileDialog, QMessageBox
+from PyQt5.QtWidgets import QTableWidgetItem, QFileDialog, QMessageBox, QCheckBox, QVBoxLayout, QWidget
 import PyQt5.QtWidgets as QtWidgets
 import pandas as pd
 
@@ -16,11 +16,14 @@ class MiApp(QtWidgets.QMainWindow):
 		self.ui.btn_open.clicked.connect(self.open_file)
 		self.ui.btn_show.clicked.connect(self.create_table)
 		self.ui.btn_generate.clicked.connect(self.create_groups)
-		self.ui.group_counter.value
 
 	def open_file(self):
 		file = QFileDialog.getOpenFileName(self,"Abrir Archivo Excel", "","Excel Files (*.xlsx) ;; All Files (*)")
 		self.direccion = file[0]
+		sh = get_sheet(self.direccion)
+		categories = get_header_from_data(sh)
+		wd = generate_checkbox(categories, self.ui.scrollArea)
+		self.ui.scrollArea.setWidget(wd)
 
 	def create_table(self):
 		try:	
@@ -32,11 +35,11 @@ class MiApp(QtWidgets.QMainWindow):
 			y = len(df_fila)
 
 		except ValueError:
-			QMessageBox.about (self,'Informacion', 'Formato incorrecto')
+			QMessageBox.about (self,'Información', 'Formato incorrecto')
 			return None			
 
 		except FileNotFoundError:
-			QMessageBox.about (self,'Informacion', 'El archivo esta \n malogrado')
+			QMessageBox.about (self,'Información', 'El archivo esta \n malogrado')
 			return None
 		#print(x, y)
 		self.ui.tableWidget.setRowCount(y)
@@ -54,12 +57,30 @@ class MiApp(QtWidgets.QMainWindow):
 		#print(df_fila)
 
 	def create_groups(self):
-            try:
-                sh = get_sheet(self.direccion)
-                data = get_data(sh)
-                result = receive_data(data, [sexo])
-                groups = generate_groups(self.ui.group_counter.value, result)
-            except: pass
+		try:
+			print(get_header_from_data(get_sheet(self.direccion)))
+			sh = get_sheet(self.direccion)
+			data = get_data(sh)
+			result = receive_data(data, [sexo])
+			groups = generate_groups(self.ui.group_counter.value, result)
+		except:
+			QMessageBox.about (self,'Información', 'No se ha seleccionado ningun archivo aún.')
+			return None
+
+def generate_checkbox(categ_list, environment):
+	vbox = QVBoxLayout()
+	widget = QWidget()
+	for cat in categ_list:
+		cb = QCheckBox(cat, environment)
+		vbox.addWidget(cb)
+	widget.setLayout(vbox)
+	return widget
+
+def get_header_from_data(sheet):
+    for row in sheet.iter_rows(min_row=1,values_only = True):
+    	return row
+
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
@@ -69,8 +90,6 @@ if __name__ == "__main__":
 
 
 '''
-
-
 def get_data_from_excel(path):
     sh = get_sheet(path)
     data = get_data(sh)
@@ -98,6 +117,4 @@ if __name__ == '__main__':
         for item in list:
             print(item)
         print()
-
-    
 '''
