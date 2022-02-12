@@ -69,7 +69,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="group_counter"/>
+           <widget class="QSpinBox" name="group_counter">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer">

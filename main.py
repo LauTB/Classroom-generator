@@ -13,14 +13,16 @@ class MiApp(QtWidgets.QMainWindow):
 		super().__init__()
 		self.ui = Ui_MainWindow() 
 		self.ui.setupUi(self)		
-		self.ui.btn_open.clicked.connect(self.abrir_archivo)
-		self.ui.btn_show.clicked.connect(self.crear_tabla)
+		self.ui.btn_open.clicked.connect(self.open_file)
+		self.ui.btn_show.clicked.connect(self.create_table)
+		self.ui.btn_generate.clicked.connect(self.create_groups)
+		self.ui.group_counter.value
 
-	def abrir_archivo(self):
+	def open_file(self):
 		file = QFileDialog.getOpenFileName(self,"Abrir Archivo Excel", "","Excel Files (*.xlsx) ;; All Files (*)")
 		self.direccion = file[0]
 
-	def crear_tabla(self):
+	def create_table(self):
 		try:	
 			df = pd.read_excel(self.direccion)
 
@@ -51,16 +53,19 @@ class MiApp(QtWidgets.QMainWindow):
 				self.ui.tableWidget.setItem(i,j, QTableWidgetItem(dato))
 		#print(df_fila)
 
+	def create_groups(self):
+            try:
+                sh = get_sheet(self.direccion)
+                data = get_data(sh)
+                result = receive_data(data, [sexo])
+                groups = generate_groups(self.ui.group_counter.value, result)
+            except: pass
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     mi_app = MiApp()
     mi_app.show()
     sys.exit(app.exec_())
-
-
-
-
-
 
 
 '''
