@@ -11,7 +11,7 @@ import pandas as pd
 class MiApp(QtWidgets.QMainWindow):
 	def __init__(self):
 		super().__init__()
-		self.ui = Ui_GeneradordeGrupos() 
+		self.ui = Ui_MainWindow() 
 		self.ui.setupUi(self)		
 		self.ui.btn_open.clicked.connect(self.abrir_archivo)
 		self.ui.btn_show.clicked.connect(self.crear_tabla)
