@@ -2,7 +2,7 @@
 
 ## Integrantes
 
-### Laura Tamayo Blanco
-### Yasmin Cisneros Cimadevila
-### Jessy Gigato Izquirdo
-### Nelson 
+### Laura Tamayo Blanco C411
+### Yasmin Cisneros Cimadevila C411
+### Jessy Gigato Izquirdo C411
+### Nelson Mendoza Alvarez C412
