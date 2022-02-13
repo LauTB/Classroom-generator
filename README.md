@@ -17,12 +17,12 @@ Para realizar la instalación de las bibliotecas necesarias para el proyecto eje
 \
 Para generar el ejecutable .exe para utilizar la aplicación:
 
-> pyinstaller --windowed --onefile --icon=media/ico.ico main.py
+> pyinstaller --windowed --onefile --icon=media/ico.ico '.\Generador de Grupos.py'
 
 
     Este proceso puede demorar algunos segundos ya que se generan una amplia cantidad de archivos
 
-Luego el ejecutable se encontrará en la dirección `"./din/main.exe"` y ya se encuentra listo para su uso.
+Luego el ejecutable se encontrará en la dirección `"dist/Generador de Grupos.exe"` y ya se encuentra listo para su uso.
 
 ---
 
