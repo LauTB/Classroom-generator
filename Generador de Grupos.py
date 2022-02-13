@@ -1,6 +1,7 @@
 from groups_generator import *
 from read_file import *
 from data_selector import *
+from write_file import * 
 
 import sys
 from visual.win import *
@@ -18,12 +19,14 @@ class MiApp(QtWidgets.QMainWindow):
 		self.ui.btn_generate.clicked.connect(self.create_groups)
 
 	def open_file(self):
-		file = QFileDialog.getOpenFileName(self,"Abrir Archivo Excel", "","Excel Files (*.xlsx) ;; All Files (*)")
-		self.direccion = file[0]
-		sh = get_sheet(self.direccion)
-		categories = get_header_from_data(sh)
-		wd = generate_checkbox(categories, self.ui.scrollArea)
-		self.ui.scrollArea.setWidget(wd)
+			try:
+				file = QFileDialog.getOpenFileName(self,"Abrir Archivo Excel", "","Excel Files (*.xlsx) ;; All Files (*)")
+				self.direccion = file[0]
+				sh = get_sheet(self.direccion)
+				categories = get_header_from_data(sh)
+				wd = generate_checkbox(categories, self.ui.scrollArea)
+				self.ui.scrollArea.setWidget(wd)
+			except: pass
 
 	def create_table(self):
 		try:	
@@ -62,9 +65,14 @@ class MiApp(QtWidgets.QMainWindow):
 				data = get_data(sh)
 				wd = self.ui.scrollArea.widget()
 				categories = asign_lambda_from_checkbox_list(wd)
+				self.headers = categories
 				result = receive_data(data, categories)
 				groups = generate_groups(self.ui.group_counter.value(), result)
-				print(len(groups), len(groups[0]))
+				print(categories)
+				for id, gr in enumerate(groups):
+						db = define_data_base(gr)
+						create_sheet(db, get_header_from_data(sh), id)
+    						
 				return None
 				# generate the diferents groups
 		except:
