@@ -41,7 +41,8 @@ class MiApp(QtWidgets.QMainWindow):
 		except FileNotFoundError:
 			QMessageBox.about (self,'Información', 'El archivo esta \n malogrado')
 			return None
-		#print(x, y)
+		#
+		# (x, y)
 		self.ui.tableWidget.setRowCount(y)
 		self.ui.tableWidget.setColumnCount(x)
 
@@ -58,11 +59,15 @@ class MiApp(QtWidgets.QMainWindow):
 
 	def create_groups(self):
 		try:
-			print(get_header_from_data(get_sheet(self.direccion)))
-			sh = get_sheet(self.direccion)
-			data = get_data(sh)
-			result = receive_data(data, [sexo])
-			groups = generate_groups(self.ui.group_counter.value, result)
+				sh = get_sheet(self.direccion)
+				data = get_data(sh)
+				wd = self.ui.scrollArea.widget()
+				categories = asign_lambda_from_checkbox_list(wd)
+				result = receive_data(data, categories)
+				groups = generate_groups(self.ui.group_counter.value(), result)
+				print(len(groups), len(groups[0]))
+				return None
+				# generate the diferents groups
 		except:
 			QMessageBox.about (self,'Información', 'No se ha seleccionado ningun archivo aún.')
 			return None
@@ -76,6 +81,15 @@ def generate_checkbox(categ_list, environment):
 	widget.setLayout(vbox)
 	return widget
 
+def asign_lambda_from_checkbox_list(widget):
+		checkbox_list = widget.children()[0]
+		result = []
+		for pos, item in enumerate(checkbox_list.children()):
+			if item.isChecked():
+				result.append(lambda_list[pos])
+		return result
+    		 
+
 def get_header_from_data(sheet):
     for row in sheet.iter_rows(min_row=1,values_only = True):
     	return row
@@ -88,33 +102,3 @@ if __name__ == "__main__":
     mi_app.show()
     sys.exit(app.exec_())
 
-
-'''
-def get_data_from_excel(path):
-    sh = get_sheet(path)
-    data = get_data(sh)
-    return data
-
-
-def create_groups(data, groups_count, categories):
-    result = receive_data(data, categories)
-    groups = generate_groups(groups_count, result)
-    return groups
-
-def main(path, n, categories):
-    data = get_data_from_excel(path)
-    groups = create_groups(data, n, categories)
-    return groups
-
-
-if __name__ == '__main__':
-    """
-    example 1
-    """
-    g = main('./data/data.xlsx', 4, [sexo, tipo_de_estudiante])
-    for i, list in enumerate(g):
-        print(f"grupo: {i+1}")
-        for item in list:
-            print(item)
-        print()
-'''

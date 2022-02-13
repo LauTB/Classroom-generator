@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.frame_2 = QtWidgets.QFrame(self.frame)
-        self.frame_2.setStyleSheet("background-color: rgb(241, 241, 241);")
+        self.frame_2.setStyleSheet("background-color: rgb(245, 245, 245);")
         self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")
@@ -44,6 +44,7 @@ class Ui_MainWindow(object):
         spacerItem = QtWidgets.QSpacerItem(139, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.label = QtWidgets.QLabel(self.frame_2)
+        self.label.setStyleSheet("")
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         spacerItem1 = QtWidgets.QSpacerItem(138, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -133,7 +134,7 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Generador de Grupos"))
         self.btn_generate.setText(_translate("MainWindow", "Generar Archivo con Grupos"))
         self.label_2.setText(_translate("MainWindow", "Cantidad de Grupos a conformar:"))
-        self.label_3.setText(_translate("MainWindow", "Categorias de importancia:"))
+        self.label_3.setText(_translate("MainWindow", "Categorias a clasificar:"))
         self.label_4.setText(_translate("MainWindow", "Vista Previa:"))
 
 

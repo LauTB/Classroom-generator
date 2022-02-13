@@ -2,6 +2,7 @@ from webbrowser import get
 from read_file import *
 from data_selector import *
 
+lambda_list = [ci, nombre, apellidos, pais, provincia, municipio, situacion_academica, estado, direccion, fecha_de_nacimiento, grupo, carrera, facultad, tipo_de_curso, correo, fuente_de_ingreso, origen_academico, regimen_de_estudio, natural_de, telefono, fecha_de_ingreso_a_la_es, estado_civil, organizacion_politica, fecha_de_ingreso_al_ces, fecha_de_matricula, sexo, color_de_piel, tipo_de_estudiante, anno_de_estudio, centro_de_trabajo, nombre_padre, na_padre, nombre_madre, na_madre, tipo_servicio_militar, edad]
 
 def sort_and_divide(list):
     temp_list = [i for i in list]
