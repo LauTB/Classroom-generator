@@ -93,4 +93,3 @@ def get_data(sheet):
                             edad=row[35])
         students.append(student)
     return students
-

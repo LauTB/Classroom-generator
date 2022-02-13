@@ -23,7 +23,6 @@ class MiApp(QtWidgets.QMainWindow):
 	def crear_tabla(self):
 		try:	
 			df = pd.read_excel(self.direccion)
-
 			columnas = list(df.columns)
 			df_fila = df.to_numpy().tolist()
 			x = len(columnas)
