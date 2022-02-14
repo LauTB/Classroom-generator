@@ -15,6 +15,10 @@ Para realizar la instalación de las bibliotecas necesarias para el proyecto eje
 > pip install -r requeriments.txt
 
 \
+Si desea ejecutar el programa como un archivo de python:
+> python '.\Generador de Grupos.py'     
+
+\
 Para generar el ejecutable .exe para utilizar la aplicación:
 
 > pyinstaller --windowed --onefile '.\Generador de Grupos.py'
