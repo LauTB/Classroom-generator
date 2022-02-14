@@ -55,7 +55,7 @@ def order_by_cat(dict, id_list, cat_list):
         for item in temp_list:
             result.extend(order_by_cat(dict, get_id_list(item), cat_list[1:]))
         return result
-    return get_id_list(temp_list)
+    return order_by_cat(dict, get_id_list(temp_list), cat_list[1:])
 
 
 def receive_data(data, categories):
