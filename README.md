@@ -17,7 +17,7 @@ Para realizar la instalación de las bibliotecas necesarias para el proyecto eje
 \
 Para generar el ejecutable .exe para utilizar la aplicación:
 
-> pyinstaller --windowed --onefile --icon=media/ico.ico '.\Generador de Grupos.py'
+> pyinstaller --windowed --onefile '.\Generador de Grupos.py'
 
 
     Este proceso puede demorar algunos segundos ya que se generan una amplia cantidad de archivos
@@ -36,12 +36,12 @@ Se desplegara el menú de categorias por las cuales se puede seleccionar para re
 
 ![](media/paso2.png)
 
-Una vez se guarden los archivos, estos seran guardados en la carpeta `"Grupos"` que se generará automaticamente
+Una vez se guarden los archivos, estos serán guardados en la carpeta `"Grupos"` que se generará automaticamente
 
 ![](media/paso3.png)
 
 ### Dato Extra
-Para chequear si el archivo que abrio es el correcto siempre puede previsualizarlo:
+Para chequear si el archivo que abrió es el correcto siempre puede previsualizarlo:
 
 ![](media/paso4.png)
 ----
