@@ -51,7 +51,7 @@ def define_data_base(list_):
         database.append(stud_to_tuple(item))
     return database
 
-def create_sheet(database, headers, id):
+def create_sheet(database, headers, id, group):
     wb = openpyxl.Workbook()
     hoja = wb.active
     
@@ -64,5 +64,6 @@ def create_sheet(database, headers, id):
     except OSError as e:
         if e.errno != errno.EEXIST:
             raise
-
-    wb.save(f'Grupos/Grupo-C11{id + 1}.xlsx')
+    g = 1 if id < group else 2
+    i = id + 1 if id + 1 <= group else id - group + 1
+    wb.save(f'Grupos/Grupo-C1{g}{i}.xlsx')

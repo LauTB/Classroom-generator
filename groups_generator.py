@@ -21,9 +21,9 @@ def sort_and_divide(list):
             list_of_lists.append([i for i in temp])
             temp = [item]
             elem = item[0]
-    if list_of_lists:
-        return (True, list_of_lists) 
-    else: return (False, temp_list)
+    else:
+        list_of_lists.append([i for i in temp])
+    return list_of_lists
 
 # return an unique list from a list of lists
 # list of lists to list
@@ -36,27 +36,24 @@ def lol_to_list(list):
 
 def generate_list_by_cat(dict, id, cat):
     result = []
-    for item in id:
-        temp_stud = dict[item]
-        result.append((cat(temp_stud), item))
+    for id_ in id:
+        temp_stud = dict[id_]
+        result.append((cat(temp_stud), id_))
     return result
 
 def get_id_list(list_):
     return [i for (_, i) in list_]
 
-def order_by_cat(dict, id_list, cat_list):
-    if not cat_list: 
+def order_by_cat(dict, id_list, cat_list, i):
+    if not cat_list:
         return id_list
-    
     cat_list_ = generate_list_by_cat(dict, id_list, cat_list[0])
-    is_lol, temp_list = sort_and_divide(cat_list_)
-    if is_lol:
-        result = []
-        for item in temp_list:
-            result.extend(order_by_cat(dict, get_id_list(item), cat_list[1:]))
-        return result
-    return order_by_cat(dict, get_id_list(temp_list), cat_list[1:])
-
+    temp_list = sort_and_divide(cat_list_)
+    result = []
+    for item in temp_list:
+        result = _concat_list_(result, order_by_cat(dict, get_id_list(item), cat_list[1:], i+1))
+    return result
+    
 
 def receive_data(data, categories):
     dic = {}
@@ -65,14 +62,27 @@ def receive_data(data, categories):
     
     id_list = [i for i in range(len(dic))]
 
-    result = order_by_cat(dic, id_list, categories)
+    result = order_by_cat(dic, id_list, categories, 0)
 
     return [dic[item] for item in result]
 
-def generate_groups(n, list):
+def _concat_list_(list1, list2):
+        result = [i for i in list1]
+        for i in list2:
+            if i not in result:
+                result.append(i)
+        return result
+
+def generate_groups(n, list, s1):
     list_ = [[] for _ in range(n)]
-
-    for i, item in enumerate(list):
-        list_[i % n].append(item)
-
+    if s1 == n:
+        for i, item in enumerate(list):
+            list_[i % n].append(item)
+    else: 
+        amount = int(len(list) / n)
+        count = len(list) - (s1*amount)
+        for i in range(s1*amount):
+            list_[i % s1].append(list[i])
+        for i in range(count):
+            list_[s1 + (i % (n - s1))].append(list[count + i])
     return list_
