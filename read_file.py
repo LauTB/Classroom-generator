@@ -9,7 +9,7 @@ class Student:
     pais: str
     provincia: str
     municipio: str
-    situcion_academica: str
+    situacion_academica: str
     estado: str
     direccion:str
     fecha_de_nacimiento:str
@@ -61,7 +61,7 @@ def get_data(sheet):
                             pais=row[3],
                             provincia=row[4],
                             municipio=row[5],
-                            situcion_academica=row[6],
+                            situacion_academica=row[6],
                             estado=row[7],
                             direccion=row[8],
                             fecha_de_nacimiento=row[9],

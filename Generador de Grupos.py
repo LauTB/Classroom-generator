@@ -86,9 +86,9 @@ class MiApp(QtWidgets.QMainWindow):
 				groups_count = self.ui.group_counter.value() + self.ui.group_counter2.value()
 				groups = generate_groups(groups_count, result, self.ui.group_counter.value())
 				for id, gr in enumerate(groups):
-						db = define_data_base(gr)
-						create_sheet(db, get_header_from_data(sh), id, self.ui.group_counter.value())
-    						
+					db = define_data_base(gr)
+					create_sheet(db, get_header_from_data(sh), id, self.ui.group_counter.value())
+					create_enrollment(db, id, self.ui.group_counter.value(), self.ui.year.value())	
 				return None
 				# generate the diferents groups
 

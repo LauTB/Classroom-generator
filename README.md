@@ -34,15 +34,19 @@ Luego el ejecutable se encontrará en la dirección `"dist/Generador de Grupos.e
 
 Para su uso primeramente debe de agregar el archivo excel (.xlsx)  
 
-![](media/paso1.png)
+![](media/paso1.jpg)
 
-Se desplegara el menú de categorias por las cuales se puede seleccionar para realizar una repartición de los grupos de forma homogénea tomando como referencia las mismas. Ademas de la seleccion de la cantidad de grupos deseados.
+Se desplegara el menú de categorias por las cuales se puede seleccionar para realizar una repartición de los grupos de forma homogénea tomando como referencia las mismas.
 
-![](media/paso2.png)
+![](media/paso2.jpg)
 
-Una vez se guarden los archivos, estos serán guardados en la carpeta `"Grupos"` que se generará automaticamente
+Recuerde seleccionar la cantidad de grupos y el año inicial del proceso de matriculado
 
 ![](media/paso3.png)
+
+Una vez se guarden los archivos, estos serán guardados en la carpeta `"Grupos"` que se generará automaticamente, al igual que el listad de matriculas en la carpeta `"Matrícula"`
+
+![](media/paso5.png)
 
 ### Dato Extra
 Para chequear si el archivo que abrió es el correcto siempre puede previsualizarlo:
