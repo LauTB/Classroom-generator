@@ -25,10 +25,8 @@ class MiApp(QtWidgets.QMainWindow):
 				sh = get_sheet(self.direccion)
 				categories = get_header_from_data(sh)
 				wd = generate_checkbox(categories, self.ui.scrollArea)
-				wd2 = generate_checkbox(categories, self.ui.scrollArea_2)
 				wd3 = generate_checkbox(categories, self.ui.scrollArea_3)
 				self.ui.scrollArea.setWidget(wd)
-				self.ui.scrollArea_2.setWidget(wd2)
 				self.ui.scrollArea_3.setWidget(wd3)
 			except: pass
 
@@ -73,13 +71,10 @@ class MiApp(QtWidgets.QMainWindow):
 				sh = get_sheet(self.direccion)
 				data = get_data(sh)
 				wd = self.ui.scrollArea.widget()
-				wd2 = self.ui.scrollArea_2.widget()
 				wd3 = self.ui.scrollArea_3.widget()
 				categories1 = asign_lambda_from_checkbox_list(wd)
-				categories2 = asign_lambda_from_checkbox_list(wd2)
 				categories3 = asign_lambda_from_checkbox_list(wd3)
-				categories_temp = concat_list(categories1, categories2) 
-				categories = concat_list(categories_temp, categories3)
+				categories = concat_list(categories1, categories3)
 				self.headers = categories
 				result = receive_data(data, categories)
 				# print('\n'.join([str(i.tipo_de_estudiante)+'----'+str(i.sexo) for i in result]))
