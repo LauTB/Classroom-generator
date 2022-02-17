@@ -14,9 +14,12 @@ Para realizar la instalación de las bibliotecas necesarias para el proyecto eje
 
 > pip install -r requeriments.txt
 
+    puede ser pip3 en dependencia del que se tenga instalado previamente.
 \
 Si desea ejecutar el programa como un archivo de python:
 > python '.\Generador de Grupos.py'     
+
+    puede ser python3 dependencia del que se tenga instalado
 
 \
 Para generar el ejecutable .exe para utilizar la aplicación:
